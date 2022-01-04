@@ -4,15 +4,12 @@ import com.qjiu.spring5.Book;
 import com.qjiu.spring5.Orders;
 import com.qjiu.spring5.User;
 import com.qjiu.spring5.bean.Emp;
-import com.qjiu.spring5.bean.MyBean;
 import com.qjiu.spring5.collectiontype.Course;
 import com.qjiu.spring5.collectiontype.Stu;
 import com.qjiu.spring5.service.UserService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;

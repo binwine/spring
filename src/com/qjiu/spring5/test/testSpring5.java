@@ -99,8 +99,7 @@ public class testSpring5 {
     @Test
     public void test8() {
         List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
+        System.out.println("ss");
         System.out.println(list.toString());
     }
 }

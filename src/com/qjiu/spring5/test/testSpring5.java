@@ -101,5 +101,6 @@ public class testSpring5 {
         List<String> list = new ArrayList<>();
         System.out.println("ss");
         System.out.println(list.toString());
+        System.out.println("xx");
     }
 }

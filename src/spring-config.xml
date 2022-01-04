@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="com.qjiu.spring5.User"></bean>
+    <bean id="book" class="com.qjiu.spring5.Book">
+        <!--使用property完成属性注入
+        name：类属性名称
+        value：向属性注入的值
+        -->
+        <property name="bName" value="易筋经"></property>
+        <property name="bAuthor" value="达摩老祖"></property>
+        <!--属性值包括特殊符号
+        1.吧<>进行转义&lt;&gt;
+        2. 吧带特殊符号内容写到CDATA里面-->
+        <property name="address">
+            <value><![CDATA[<<南京>>]]></value>
+        </property>
+
+    </bean>
+<!--    有参构造注入属性-->
+    <bean id="orders" class="com.qjiu.spring5.Orders">
+<!--        index表示有参构造方法的参数第几个
+            也可以使用name来表示属性名称
+-->
+        <constructor-arg index="0" value="computer"/>
+        <constructor-arg index="1" value="china"/>
+    </bean>
+
+<!--    外部bean-->
+<!--    service和dao对象创建-->
+    <bean id="userDaoImpl" class="com.qjiu.spring5.dao.UserDaoImpl"></bean>
+    <bean id="userService" class="com.qjiu.spring5.service.UserService">
+        <!--注入userDao对象
+        name属性：类里面属性名称
+        ref属性：创建userDao对象bean标签的id值-->
+        <property name="userDao" ref="userDaoImpl"></property>
+    </bean>
+
+<!--    内部bean-->
+    <bean id="emp" class="com.qjiu.spring5.bean.Emp">
+<!--        设置两个普通属性-->
+        <property name="eName" value="lucy"></property>
+        <property name="gender" value="女"></property>
+<!--        设置对象类型属性-->
+        <property name="dept" ref="dept"></property>
+        <property name="dept.dName" value="技术部">
+            <!--<bean id="dept" class="com.qjiu.spring5.bean.Dept">
+                <property name="dName" value="安保部"></property>
+            </bean>-->
+        </property>
+    </bean>
+    <bean id="dept" class="com.qjiu.spring5.bean.Dept">
+        <property name="dName" value="财务部"></property>
+    </bean>
+
+    <bean id="stu" class="com.qjiu.spring5.collectiontype.Stu">
+        <property name="courses">
+            <array>
+                <value>java课程</value>
+                <value>数据库课程</value>
+            </array>
+        </property>
+        <property name="list">
+            <list>
+                <value>张三</value>
+                <value>李四</value>
+            </list>
+        </property>
+        <property name="maps">
+            <map>
+                <entry key="1" value="java"></entry>
+                <entry key="2" value="php"></entry>
+            </map>
+        </property>
+        <property name="sets">
+            <set>
+                <value>Mysql</value>
+                <value>Redis</value>
+            </set>
+        </property>
+        <property name="courseList">
+            <list>
+                <ref bean="course1"/>
+                <ref bean="course2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="course1" class="com.qjiu.spring5.collectiontype.Course">
+        <property name="cname" value="框架1"></property>
+    </bean>
+    <bean id="course2" class="com.qjiu.spring5.collectiontype.Course">
+        <property name="cname" value="框架2"></property>
+    </bean>
+
+</beans>
